@@ -67,7 +67,7 @@ driver.get(options.searchURL);
 driver.findElement(By.name("query")).sendKeys(options.searchTerm + "\n");
 
 // Switch to list view
-driver.findElement(By.id("gridview")).click();
+//driver.findElement(By.id("gridview")).click();
 driver.findElement(By.id("listview")).click();
 
 // Find all posts in the first page
@@ -85,7 +85,7 @@ driver.findElements(By.xpath('//*[@id="sortable-results"]/ul/li')).then(elements
             driver.findElement(By.xpath(link)).click();
             driver.sleep(1500);
 
-            driver.findElement(By.xpath("/html/body/section/section/header/button")).click().catch((e) => {
+            driver.findElement(By.xpath("/html/body/section/section/header/div/div/ button")).click().catch((e) => {
                 // continue
             });
             driver.sleep(1000);
@@ -157,12 +157,12 @@ driver.findElements(By.xpath('//*[@id="sortable-results"]/ul/li')).then(elements
 
             // Get email and send a response
             driver
-                .findElement(By.className("anonemail"))
+                .findElement(By.className("mailapp"))
                 .getText()
                 .then(s => {
                     logger.log('info', i + ". Email: " + s);
                     var mailOptions = {
-                        to: "ourarash@gmail.com",
+                        to: "testing@test.hgmail.com",
                         subject: "Re: " + curTitle, // Subject line 
                         text: options.emailBody + "\n\n" + curUrl, // plaintext body 
                         html: linkify(options.emailBody + "\n\n" + curUrl), // plaintext body 
